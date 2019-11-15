@@ -11,3 +11,4 @@ for file in $(find $DOTFILES_DIR -maxdepth 1 -type f -printf "%f\n"); do
 done
 
 echo "\n. ~/.bashrc_custom" >> ~/.bashrc
+git config --local include.path "~/.gitconfig_custom"
