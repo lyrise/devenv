@@ -1,1 +1,5 @@
-# devenv
+# Devenv
+
+## License
+
++ MIT License
