@@ -10,6 +10,9 @@ setopt hist_ignore_dups
 setopt inc_append_history
 setopt share_history
 setopt hist_reduce_blanks
+
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
 # }
 
 # zplug {
@@ -56,3 +59,7 @@ bindkey '^T' anyframe-widget-cdr
 bindkey '^R' anyframe-widget-put-history
 bindkey '^X' anyframe-widget-kill
 # }
+
+# golang
+export GOPATH="$HOME/.go"
+export PATH="$GOPATH/bin:$PATH"
