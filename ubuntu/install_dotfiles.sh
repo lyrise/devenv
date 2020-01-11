@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 THIS_DIR=$(dirname "$1")
 DOTFILES_DIR=$HOME/.dotfiles
@@ -9,6 +9,3 @@ cp -r $THIS_DIR/dotfiles $DOTFILES_DIR
 for file in $(find $DOTFILES_DIR -maxdepth 1 -type f -printf "%f\n"); do
     ln -s $DOTFILES_DIR/$file $HOME/$file
 done
-
-echo "\n. ~/.bashrc_custom" >> ~/.bashrc
-git config --local include.path "~/.gitconfig_custom"
