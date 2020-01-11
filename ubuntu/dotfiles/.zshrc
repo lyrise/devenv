@@ -5,7 +5,6 @@ SAVEHIST=1000000
 
 setopt auto_cd
 setopt auto_pushd
-setopt pushd_ignore_dups
 setopt hist_ignore_dups
 setopt inc_append_history
 setopt share_history
@@ -13,6 +12,8 @@ setopt hist_reduce_blanks
 
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
+
+zstyle ':completion:*:default' menu select=2
 # }
 
 # zplug {
@@ -41,6 +42,10 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
+# }
+
+# fzf {
+export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --border --inline-info"
 # }
 
 # alias {
