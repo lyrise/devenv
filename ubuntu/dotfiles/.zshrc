@@ -17,18 +17,17 @@ source ~/.zplug/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "mollifier/anyframe"
-zstyle ":anyframe:selector:" use fzf
 zplug "mollifier/cd-gitroot"
 zplug "b4b4r07/enhancd", use:init.sh
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-completions"
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 zplug "mafredri/zsh-async"
 zplug "sindresorhus/pure"
-zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "chrissicool/zsh-256color"
+
+zstyle ":anyframe:selector:" use fzf
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
