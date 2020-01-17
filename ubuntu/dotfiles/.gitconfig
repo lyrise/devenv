@@ -1,3 +1,6 @@
 [alias]
-    pull-request = "!hub browse -- compare/develop...$(git symbolic-ref --short HEAD)?body=%0A%23$(echo $(git symbolic-ref --short\
+  pull-request = "!hub browse -- compare/develop...$(git symbolic-ref --short HEAD)?body=%0A%23$(echo $(git symbolic-ref --short\
  HEAD) | awk -F'[/_-]' '{print $2}')"
+[alias]
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
