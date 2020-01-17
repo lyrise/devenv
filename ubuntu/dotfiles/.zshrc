@@ -65,6 +65,7 @@ bindkey '^R' anyframe-widget-put-history
 bindkey '^X' anyframe-widget-kill
 # }
 
-# golang
+# golang {
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
+# }
