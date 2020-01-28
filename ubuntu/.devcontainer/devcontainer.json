@@ -1,0 +1,10 @@
+{
+    "name": "devenv",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "devenv",
+    "workspaceFolder": "/work",
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/zsh"
+    },
+    "extensions": []
+}
