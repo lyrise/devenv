@@ -5,4 +5,5 @@ SCRIPT_DIR=$(
     pwd
 )
 
-(cd $SCRIPT_DIR/.config && sh install_apps.sh && sh install_dotfiles.sh)
+(cd $SCRIPT_DIR/.config && sh install_apps.sh)
+(cd $SCRIPT_DIR/.config && sh install_dotfiles.sh)
