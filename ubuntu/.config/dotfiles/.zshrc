@@ -46,7 +46,7 @@ zplug load
 export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --border --inline-info --exact"
 
 fzf-z-search() {
-    local res=$(z | sort -rn | cut -c 12- | fzf)
+    local res=$(z | cut -c 12- | awk '!a[$0]++' | fzf)
     if [ -n "$res" ]; then
         BUFFER+="cd $res"
         zle accept-line
@@ -89,4 +89,8 @@ alias grep='grep --color=always'
 # golang {
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
+# }
+
+# rust {
+export PATH="$HOME/.cargo/bin:$PATH"
 # }
