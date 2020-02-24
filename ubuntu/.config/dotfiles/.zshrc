@@ -71,6 +71,7 @@ fzf-git-branch-widget() {
     branches=$(git branch -vv) &&
         branch=$(echo "$branches" | fzf +m) &&
         git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+    zle accept-line
 }
 zle -N fzf-git-branch-widget
 bindkey '^b' fzf-git-branch-widget
@@ -79,19 +80,20 @@ fzf-history-widget() {
     local tac=${commands[tac]:-"tail -r"}
     BUFFER=$( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | sed 's/ *[0-9]* *//' | eval $tac | awk '!a[$0]++' | fzf +s)
     CURSOR=$#BUFFER
-    zle clear-screen
+    zle accept-line
 }
 zle -N fzf-history-widget
 bindkey '^r' fzf-history-widget
 
-## kill process
 fzf-process-kill() {
-    local pid
-    pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-
+    local list=$(ps auxww)
+    local head=$(echo $list | head -n 1)
+    local pid=$(echo $list | sed 1d | fzf -m --header="$head" | awk '{print $2}')
     if [ "x$pid" != "x" ]; then
-        echo $pid | xargs kill -${1:-9}
+        echo $pid | xargs sudo kill -${1:-9}
     fi
+    echo "killed: $pid"
+    zle accept-line
 }
 zle -N fzf-process-kill
 bindkey '^x' fzf-process-kill
