@@ -91,8 +91,8 @@ fzf-process-kill() {
     local pid=$(echo $list | sed 1d | fzf -m --header="$head" | awk '{print $2}')
     if [ "x$pid" != "x" ]; then
         echo $pid | xargs sudo kill -${1:-9}
+        echo "killed: $pid"
     fi
-    echo "killed: $pid"
     zle accept-line
 }
 zle -N fzf-process-kill
