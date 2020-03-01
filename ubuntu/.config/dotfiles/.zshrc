@@ -15,6 +15,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:default' menu select=2
+zstyle :prompt:pure:git:branch color gray
 
 autoload -U compinit
 compinit
@@ -27,11 +28,12 @@ zplug 'b4b4r07/enhancd', use:init.sh
 zplug 'junegunn/fzf-bin', as:command, from:gh-r, rename-to:fzf
 zplug "junegunn/fzf", use:shell/key-bindings.zsh
 zplug "junegunn/fzf", use:shell/completion.zsh
-zplug 'mafredri/zsh-async'
-zplug 'sindresorhus/pure'
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
+zplug "zsh-users/zsh-history-substring-search"
 zplug 'chrissicool/zsh-256color'
 zplug 'rupa/z', use:z.sh
 zplug 'kwhrtsk/docker-fzf-completion'
@@ -80,7 +82,6 @@ fzf-history-widget() {
     local tac=${commands[tac]:-"tail -r"}
     BUFFER=$( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | sed 's/ *[0-9]* *//' | eval $tac | awk '!a[$0]++' | fzf +s)
     CURSOR=$#BUFFER
-    zle accept-line
 }
 zle -N fzf-history-widget
 bindkey '^r' fzf-history-widget
@@ -125,4 +126,4 @@ export GOPATH=$HOME/.go
 export PATH=$GOPATH/bin:$PATH
 
 # custom
-. ~/.zshrc.custom
+. ~/.zshrc.include

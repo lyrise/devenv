@@ -3,5 +3,3 @@ pull-request = "!hub browse -- compare/develop...$(git symbolic-ref --short HEAD
 log-graph = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 log-graph-all = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 push-with-set-upstream = "!git push --set-upstream origin $(git symbolic-ref --short HEAD)"
-[url "ssh://git@github.com/"]
-insteadOf = https://github.com/

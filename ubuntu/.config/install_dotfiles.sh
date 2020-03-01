@@ -1,11 +1,25 @@
-#!/bin/bash
+#!/bin/zsh
 
-THIS_DIR=$(dirname "$1")
-DOTFILES_DIR=$HOME/.dotfiles
+cd $(dirname $0)
+current_dir=$(pwd)
+dotfiles_dir=$HOME/.dotfiles
 
-rm -r $DOTFILES_DIR
-cp -r $THIS_DIR/dotfiles $DOTFILES_DIR
+rm -r $dotfiles_dir
+cp -r $current_dir/dotfiles $dotfiles_dir
 
-for file in $(find $DOTFILES_DIR -maxdepth 1 -type f -printf "%f\n"); do
-    ln -s $DOTFILES_DIR/$file $HOME/$file
+cd $dotfiles_dir
+
+ignore_names=("." "..")
+for dotfile_name in .?*; do
+    is_ignored=0
+    for ignore_name in ${ignore_names[@]}; do
+        if [ $dotfile_name = $ignore_name ]; then
+            is_ignored=1
+            break
+        fi
+    done
+
+    if [ $is_ignored -ne 1 ]; then
+        ln -s -v -f "$dotfiles_dir/$dotfile_name" $HOME
+    fi
 done
