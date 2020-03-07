@@ -2,13 +2,13 @@
 
 # dotnet
 wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-dpkg -i packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
-add-apt-repository universe
-apt update
-apt install apt-transport-https
-apt update
-apt install dotnet-sdk-3.1
+sudo add-apt-repository universe
+sudo apt update
+sudo apt install -y apt-transport-https
+sudo apt update
+sudo apt install -y dotnet-sdk-3.1
 
 # rust
 curl https://sh.rustup.rs -sSf | sh -s -- -q -y
