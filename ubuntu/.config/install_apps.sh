@@ -18,3 +18,6 @@ git clone https://github.com/syndbg/goenv.git $HOME/.goenv
 
 # zplug
 git clone https://github.com/zplug/zplug $HOME/.zplug
+
+# Tools
+cargo install exa bat sd fd-find dutree

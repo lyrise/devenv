@@ -101,7 +101,7 @@ bindkey '^x' fzf-process-kill
 # }
 
 # alias {
-alias ll='ls -la'
+alias ll='exa -lha --time-style=long-iso'
 alias k='kubectl'
 alias d='docker'
 alias dc='docker-compose'
