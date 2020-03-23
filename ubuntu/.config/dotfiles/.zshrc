@@ -38,7 +38,7 @@ zplug 'rupa/z', use:z.sh
 zplug 'kwhrtsk/docker-fzf-completion'
 zplug 'docker/cli', use:'contrib/completion/zsh/_docker', lazy:true
 zplug 'docker/compose', use:'contrib/completion/zsh/_docker-compose', lazy:true
-zplug 'jonmosco/kube-ps1'
+#zplug 'jonmosco/kube-ps1'
 zplug 'wfxr/forgit'
 
 if ! zplug check --verbose; then
@@ -98,20 +98,19 @@ rg-file() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
   rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
-# }
 
 # kubernetes #
 alias k='kubectl'
 
 # kube-ps1
-source $ZPLUG_REPOS/jonmosco/kube-ps1/kube-ps1.sh
-export KUBE_PS1_SYMBOL_ENABLE='false'
-export KUBE_PS1_PREFIX=''
-export KUBE_PS1_SUFFIX=''
-export KUBE_PS1_DIVIDER=' '
-export KUBE_PS1_CTX_COLOR=238
-export KUBE_PS1_NS_COLOR=242
-export PROMPT='$(kube_ps1)'$PROMPT
+#source $ZPLUG_REPOS/jonmosco/kube-ps1/kube-ps1.sh
+#export KUBE_PS1_SYMBOL_ENABLE='false'
+#export KUBE_PS1_PREFIX=''
+#export KUBE_PS1_SUFFIX=''
+#export KUBE_PS1_DIVIDER=' '
+#export KUBE_PS1_CTX_COLOR=238
+#export KUBE_PS1_NS_COLOR=242
+#export PROMPT='$(kube_ps1)'$PROMPT
 
 # docker #
 alias d='docker'
