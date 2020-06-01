@@ -1,13 +1,13 @@
 version: "3"
 services:
-    devenv:
-        build:
-            context: ../
-            dockerfile: .devcontainer/Dockerfile
-        volumes:
-            - ..:/work:cached
-            - /var/run/docker.sock:/var/run/docker.sock
-        command: sleep infinity
-        dns:
-            - 8.8.8.8
-        network_mode: "bridge"
+  devenv:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/work:cached
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: sleep infinity
+    dns:
+      - 8.8.8.8
+    network_mode: "bridge"

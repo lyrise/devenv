@@ -4,19 +4,21 @@ FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Configure apt and install packages
-RUN apt update \
-    && apt install -y --no-install-recommends apt-utils dialog 2>&1 \
-    && apt install -y git openssh-client iproute2 procps ssh zsh sudo gnupg2 gawk language-pack-en \
-    && apt install -y apt-transport-https ca-certificates curl wget gnupg-agent software-properties-common lsb-release 
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends apt-utils dialog 2>&1 && \
+    apt-get install -y sudo git openssh-client iproute2 procps ssh zsh build-essential gnupg2 gawk language-pack-en && \
+    apt-get install -y apt-transport-https ca-certificates curl wget gnupg-agent software-properties-common lsb-release && \
+    apt-get autoremove -y && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/*
+
+# Add "Set disable_coredump false" to /etc/sudo.conf
+RUN echo "Set disable_coredump false" >> /etc/sudo.conf
 
 # Setup
-COPY .config/ /root/.config
-RUN sh /root/.config/setup.sh
-
-# Clean up
-RUN apt autoremove -y \
-    && apt clean -y \
-    && rm -rf /var/lib/apt/lists/*
+RUN git clone https://github.com/lyrise/dotfiles.git && \
+    (cd dotfiles && sh install_ubuntu.sh) && \
+    rm -rf ./dotfiles
 
 # Switch back to dialog for any ad-hoc use of apt
 ENV DEBIAN_FRONTEND=dialog
